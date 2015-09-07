@@ -3,11 +3,17 @@
 
 To commit, you must add all new/edited files first.
 
-git add .
+>git add .
 
-Then...
+Then run the commit
 
-git commit --all  --message "Commit all files"
+>git commit --all  --message "Commit all files"
 
-Add more notes
+To upload to github, run the sync
+
+>git sync
+
+Note:  For some reason I get an error here, but the file uploads.
+
+
 #>
