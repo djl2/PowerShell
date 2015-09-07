@@ -1,6 +1,6 @@
 ﻿<#
  # show-running-services
- Gets services and shows only 
+ Gets services and shows only running services
 
 #>
 
