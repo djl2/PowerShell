@@ -1,7 +1,8 @@
 ﻿# Test error catching
-
-write-host 'Show workspace dir'
+write-host ''
+write-host 'Run get-childitem to test'
 get-childitem
+write-host ''
+write-host 'Try to run a bad command'
 
-write-host 'Try to run bad command'
 Get-MyBogusCmdlet
