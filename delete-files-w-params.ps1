@@ -29,13 +29,13 @@ Write-Host ''
 # To delete files, run with parameter -DELETE $true
 if ($DELETE) 
 {
-    write-host "Delete any $fileToDelete files in root folder older than $DaysOld days..."
-    get-childitem -recurse | Where-Object {$_.lastwritetime -le (get-date).adddays($DaysOld) -and $_.Name -like $fileToDelete} | remove-item -Verbose
+    write-host "Delete any $fileToDelete files in root folder older than $DaysOld days..."  # Note the negative sign for .adddays(-$DaysOld)
+    get-childitem -recurse | Where-Object {$_.lastwritetime -le (get-date).adddays(-$DaysOld) -and $_.Name -like $fileToDelete} | remove-item -Verbose
 }
 else # DEFAULT. No deletion. Runs with -whatif
 {
-    write-host "TEST ONLY! Delete any $fileToDelete files in root folder older than $DaysOld days..."
-    get-childitem -recurse | Where-Object {$_.lastwritetime -le (get-date).adddays($DaysOld) -and $_.Name -like $fileToDelete} | remove-item -Verbose -WhatIf
+    write-host "TEST ONLY! Delete any $fileToDelete files in root folder older than $DaysOld days..."  # Note the negative sign for .adddays(-$DaysOld)
+    get-childitem -recurse | Where-Object {$_.lastwritetime -le (get-date).adddays(-$DaysOld) -and $_.Name -like $fileToDelete} | remove-item -Verbose -WhatIf
 }
 
 # Remove PSdrive

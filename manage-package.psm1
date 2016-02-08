@@ -20,7 +20,7 @@ To delete files, run file with -DELETE $true.  RUN WITH CAUTION!
 
 
 # Functions
-<# delete-package
+<# remove-package
 .Synopsis
    Deletes old build packages
 .DESCRIPTION
@@ -46,7 +46,7 @@ function remove-packages
         # Param2 help description
         [string]$RootFolder,
 
-        [int]$DaysOld,
+        [string]$DaysOld,
 
         [boolean]$DELETE
     )
@@ -56,15 +56,18 @@ function remove-packages
     # To delete files, run with parameter -DELETE $true
     if ($DELETE) 
     {
-    write-host "Delete any $fileToDelete files in root folder older than $DaysOld days..."
+    write-host "Delete any $fileToDelete files in root folder older than $DaysOld days..."   # Note the negative sign for (-$DaysOld)
     get-childitem $RootFolder -recurse |
-    Where-Object {$_.lastwritetime -le (get-date).adddays($DaysOld) -and $_.Name -like $fileToDelete} |
+    Where-Object {$_.lastwritetime -le (get-date).adddays(-$DaysOld) -and $_.Name -like $fileToDelete} |
     remove-item -Verbose
     }
     else # DEFAULT. No deletion. Runs with -whatif
     {
-    write-host "TEST ONLY! Delete any $fileToDelete files in root folder older than $DaysOld days..."
-    get-childitem $RootFolder -recurse | Where-Object {$_.lastwritetime -le (get-date).adddays($DaysOld) -and $_.Name -like $fileToDelete} | remove-item -Verbose -WhatIf
+    write-host "TEST ONLY! To delete $fileToDelete files in root folder older than $DaysOld days, run with -DELETE" '$true'   # Note the negative sign for (-$DaysOld)
+    get-childitem $RootFolder -recurse | Where-Object {$_.lastwritetime -le (get-date).adddays(-$DaysOld) -and $_.Name -like $fileToDelete} | remove-item -Verbose -WhatIf
     }
   }  
 }
+
+
+
