@@ -1,36 +1,29 @@
 ﻿<#
-delete-files-w-params
-Latest rev 2.4.2016
+Manage-package.psm1
 
-Deletes files recursively from a root folder
+Includes custom functions for handling nuget packages on the feeds.
 
-Usage
-  
-By default, the parameter $DELETE is not defined (boolean value is effectively $false or 0) to prevent accidental file deletion.
-
-  delete-files-w-params.ps1 -RootFolder c:\temp -fileToDelete **-dev*.nupkg -DaysOld 30
-
-To delete files, run file with -DELETE $true.  RUN WITH CAUTION!
-
-  delete-files-w-params.ps1 -RootFolder c:\temp -fileToDelete **-dev*.nupkg -DaysOld 30 - DELETE $true 
-
-
- param (    # Sample UNC path [string] $RootFolder= '\\aus02gpsvm01.corp.volusion.com\vol_nuget_tfs\Volusion\Nuget\nupkg\octodev_archive',    [string]$RootFolder = $(throw "Enter root folder. Parameter is -RootFolder"),    [string]$fileToDelete = $(throw "Enter filename to delete"),    [string]$DaysOld = $(throw "Enter number of days old"),    [boolean]$DELETE    )
 #>
 
 
 # Functions
-<# remove-package
+<# Remove-Package
 .Synopsis
    Deletes old build packages
 .DESCRIPTION
    Enter number of days old to delete
 .EXAMPLE
-   Example of how to use this cmdlet
+   DEFAULT. Test only.  Runs with -whatif to show which files will be deleted.
+
+    remove-package -RootFolder '\\localhost\C$\temp\' -fileToDelete *.txt -DaysOld 3
+    
 .EXAMPLE
-   Another example of how to use this cmdlet
+   CAUTION!  To run and actually delete all the files, run with -DELETE $TRUE
+
+    remove-package -RootFolder '\\localhost\C$\temp\' -fileToDelete *.txt -DaysOld 3 -DELETE $TRUE
+
 #>
-function remove-packages
+function Remove-Packages
 {
     [CmdletBinding()]
     [Alias()]
@@ -46,7 +39,7 @@ function remove-packages
         # Param2 help description
         [string]$RootFolder,
 
-        [string]$DaysOld,
+        [int]$DaysOld,
 
         [boolean]$DELETE
     )
@@ -64,7 +57,9 @@ function remove-packages
     else # DEFAULT. No deletion. Runs with -whatif
     {
     write-host "TEST ONLY! To delete $fileToDelete files in root folder older than $DaysOld days, run with -DELETE" '$true'   # Note the negative sign for (-$DaysOld)
-    get-childitem $RootFolder -recurse | Where-Object {$_.lastwritetime -le (get-date).adddays(-$DaysOld) -and $_.Name -like $fileToDelete} | remove-item -Verbose -WhatIf
+    get-childitem $RootFolder -recurse |
+    Where-Object {$_.lastwritetime -le (get-date).adddays(-$DaysOld) -and $_.Name -like $fileToDelete} |
+    remove-item -Verbose -WhatIf
     }
   }  
 }
