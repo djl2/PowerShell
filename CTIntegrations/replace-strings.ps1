@@ -18,10 +18,6 @@ localhost <-- Use carefully! Some files have 'localhost' in the comments section
 
 /#>
 
-# Note: Replaced with param section
-# Variables Section ####################
-# $filespec = '*.exe.config'
-# $pattern = 'CTS30-DEV'
 
 # Override defaults as needed
  param (
@@ -40,4 +36,6 @@ foreach ($item in $collection)
 {
     write-host "Replace $pattern in $item"
    (Get-Content $item).Replace("$pattern", "$newPattern") | Set-Content $item
+   write-host "Confirm $newPattern was added to files"
+   Get-Content $item | Select-String -Pattern "$newPattern"
 }
