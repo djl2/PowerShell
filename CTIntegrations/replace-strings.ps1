@@ -23,8 +23,10 @@ localhost <-- Use carefully! Some files have 'localhost' in the comments section
  param (
   #  [string]$filespec = '*.exe.config',
     [string]$filespec = '*.txt',
-    [string]$pattern = 'CTS30-DEV',
-    [string]$newPattern = 'CTS30-QA'
+  #  [string]$pattern = 'CTS30-DEV',
+    [string]$pattern = $(throw "-pattern must reflect previous hostname."),
+    [string]$newPattern = "$env:COMPUTERNAME"
+
     
  )
 
