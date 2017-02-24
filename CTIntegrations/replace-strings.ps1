@@ -10,9 +10,9 @@ web.config
 
 Strings to search for and replace
 
-cts30-dev
-sql2016
-192.168.0.95
+cts30-dev <-- Original host name
+sql2016  <-- Original SQL server
+192.168.0.95 <-- Original VM host hame
 localhost <-- Use carefully! Some files have 'localhost' in the comments section
 
 
