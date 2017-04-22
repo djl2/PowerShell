@@ -24,12 +24,12 @@ localhost <-- Use carefully! Some files have 'localhost' in the comments section
  param (
   #  [string]$filespec = '*.exe.config',
     [string]$filespec = '**.config',
-    [string]$oldHostname = $( read-host "Enter old hostname."),
+    [string]$oldHostname = 'CTS30-QA',
     [string]$newHostname = "$env:COMPUTERNAME",
-    [string]$oldIP = $(Read-Host "Enter old IP address."),
-    [string]$newIP = $( Read-Host "Enter new IP address."),
-    [string]$oldSQL = $(Read-Host "Enter old SQL hostname"),
-    [string]$newSQL = $( Read-Host "Enter new SQL hostname")     
+    [string]$oldIP = '192.168.0.97',
+    [string]$newIP = $(Read-Host "Enter new IP address."),
+    [string]$oldSQL = 'SQL2016QA',
+    [string]$newSQL = $(Read-Host "Enter new SQL hostname")     
  )
 
 
