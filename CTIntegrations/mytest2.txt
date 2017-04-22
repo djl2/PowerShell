@@ -1,1 +1,3 @@
 Here's my hostname LENOVO-DLOWRANC
+
+Here's my IP 192.168.50.100
