@@ -44,16 +44,15 @@ foreach ($item in $collection)
   {
     write-host "Replace $param1 in $item"
    (Get-Content $item).Replace("$param1", "$param2") | Set-Content $item
+   
    write-host "Confirm $param2 was added to files"
-
    Get-Content $item | Select-String -Pattern "$param2" -Quiet
   }    
 }
 
 # Command Section ###################
 
+# Update config files
 update-configs $oldHostname $newHostname
-
 update-configs $oldIP $newIP
-
 update-configs $oldSQL $newSQL
