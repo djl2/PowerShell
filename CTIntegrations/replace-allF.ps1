@@ -3,7 +3,7 @@ replace-allF.ps1
 Includes custom function update-configs
 Recursively finds and replaces strings in all config files for new environments 
 
-Hard reset to update all **.config files found. NEED TO CONFIRM!
+Note: This script is set to update all **.config files found. NEED TO CONFIRM this is acceptable.
 
 
 /#>
