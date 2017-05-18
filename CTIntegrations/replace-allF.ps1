@@ -13,7 +13,7 @@ Notes
 
   Filenames are hardcoded below at $collection = Get-ChildItem -Recurse ('*.exe.config','web.config','*config.json') 
 
-  Be sure to update $oldAESPassword with actual pw before running.
+  IMPORTANT! Be sure to update $oldPassword with actual pw before running. This is normally the same pw for AES, Redis, CT databases
 
 /#>
 
@@ -42,8 +42,8 @@ Notes
     [string]$newAESUserName = $(Read-Host "Enter new AES User Name"),
 
     # Note: Update old password to correct pw
-    [string]$oldAESPassword = 'b0gusPW',
-    [string]$newAESPassword = $(Read-Host "Enter new AES Password"),
+    [string]$oldPassword = 'b0gusPW',
+    [string]$newPassword = $(Read-Host "Enter new AES Password"),
     
     [string]$oldAESProtocol = '7.0',
     [string]$newAESProtocol = $(Read-Host "Enter new AES Protocol"),
@@ -53,7 +53,7 @@ Notes
     
     [string]$oldAESCMIPAddress = '192.168.0.110',
     [string]$newAESCMIPAddress = $(Read-Host "Enter AES CM IP address")
-
+      
  )
 
 
@@ -82,10 +82,10 @@ update-configs $oldHostname $newHostname
 update-configs $oldIP $newIP
 update-configs $oldSQL $newSQL
 
-# Updates for local Avaya stack values. For CTDeviceManager.exe.config
+# Updates for local Avaya stack values. Primarily for CTDeviceManager.exe.config
 update-configs $oldAESIPAddress $newAESIPAddress
 update-configs $oldAESUserName $newAESUserName
-update-configs $oldAESPassword $newAESPassword
+update-configs $oldPassword $newPassword
 update-configs $oldAESProtocol $newAESProtocol
 update-configs $oldAESCMName $newAESCMName
 update-configs $oldAESCMIPAddress $newAESCMIPAddress
