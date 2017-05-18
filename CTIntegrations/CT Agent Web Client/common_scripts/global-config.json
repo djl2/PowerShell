@@ -2,9 +2,9 @@
   "restApiRoot": "/api",
   "host": "0.0.0.0",
   "integratedport": 8081,
-  "redishost": "10.0.0.97",
+  "redishost": "192.168.0.97",
   "redisport": 6379,
-  "redispassword": "fakepw",
+  "redispassword": "b0gusPW",
   "mode": "integrated-prod",
   "logger": {
     "logtoserver": false,
@@ -15,7 +15,7 @@
     "enabled": true,
     "port": 3002,
     "logpath": "Logs\\CTAgentWC.log",
-    "emailresturl": "http://10.0.0.97:8093/ct/email/services/v3.0/",
+    "emailresturl": "http://192.168.0.97:8093/ct/email/services/v3.0/",
     "attachmentpath": "CTEmail\\Attachments",
     "debugging": false
   },

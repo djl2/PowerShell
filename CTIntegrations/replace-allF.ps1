@@ -38,7 +38,8 @@ Filenames are hardcoded below at $collection = Get-ChildItem -Recurse ('*.exe.co
     [string]$oldAESUserName = 'ctsuitedev',
     [string]$newAESUserName = $(Read-Host "Enter new AES User Name"),
 
-    [string]$oldAESPassword = 'CTPa33w0rd',
+    # Note: Update old password to correct pw
+    [string]$oldAESPassword = 'b0gusPW',
     [string]$newAESPassword = $(Read-Host "Enter new AES Password"),
     
     [string]$oldAESProtocol = '7.0',

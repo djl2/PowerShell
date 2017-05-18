@@ -1,20 +1,20 @@
 {
     "port": 3055,
-    "authenticationUrl": "http://LENOVO-DLOWRANC:3050",
+    "authenticationUrl": "http://CTS30-QA:3050",
     "logPath": ".\\Logs",
     "logMaxFiles": 2,
     "logSize": 10240000,
     "apiVersion": "3.0.0",
     "redis": {
-        "host": "LENOVO-DLOWRANC",
+        "host": "CTS30-QA",
         "port": 6379,
-        "password": "fakepw"
+        "password": "b0gusPW"
     },
     "ctreportsdb": {
         "name": "ctreports",
-        "host": "custSQL",
+        "host": "SQL2016QA",
         "user": "CTReports",
-        "password": "fakepw",
+        "password": "b0gusPW",
         "database": "CTReports",
         "pool": {
             "max": 10,
