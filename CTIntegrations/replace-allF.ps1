@@ -3,7 +3,13 @@ replace-allF.ps1
 Includes custom function update-configs
 Recursively finds and replaces strings in all config files for new environments 
 
-Note: This script is set to update all **.config files found. NEED TO CONFIRM this is acceptable.
+Note: This script is set to update the following filenames in the CTIntegrations install folder.
+
+*.exe.config
+web.config
+*config.json
+
+Filenames are hardcoded below at $collection = Get-ChildItem -Recurse ('*.exe.config','web.config','*config.json') 
 
 
 /#>
@@ -12,8 +18,7 @@ Note: This script is set to update all **.config files found. NEED TO CONFIRM th
 # Override defaults as needed. By default, $newHostname will be automatically as the local hostname.
  param (
     # Updates for CT Suite server values
-    # [string]$filespec = '*.exe.config',
-    [string]$filespec = '**.config',
+    # [string]$filespec = '*.exe.config', DISABLED. Could not get ('*.exe.config','web.config','*config.json') to work within $filespec variable. Hardcoded instead.
     
     # Updates for local host's name
     [string]$oldHostname = 'CTS30-QA',
@@ -40,7 +45,7 @@ Note: This script is set to update all **.config files found. NEED TO CONFIRM th
     [string]$newAESProtocol = $(Read-Host "Enter new AES Protocol"),
 
     [string]$oldAESCMName = 'auracm7',
-    [string]$newAESCMName = $(Read-Host "Enter new AES CM Name"),
+    [string]$newAESCMName = $(Read-Host "Enter new AES CM hostname"),
     
     [string]$oldAESCMIPAddress = '192.168.0.110',
     [string]$newAESCMIPAddress = $(Read-Host "Enter AES CM IP address")
@@ -53,7 +58,8 @@ Note: This script is set to update all **.config files found. NEED TO CONFIRM th
 # Replace string values in all config files
 function update-configs ($param1, $param2)
 {
-$collection = Get-ChildItem -Recurse $filespec | Where-Object { Select-String $param1 $_ -Quiet }
+# $collection = Get-ChildItem -Recurse $filespec | Where-Object { Select-String $param1 $_ -Quiet } DISABLED. $filespec var would not work. Hardcoded array instead
+$collection = Get-ChildItem -Recurse ('*.exe.config','web.config','*config.json') | Where-Object { Select-String $param1 $_ -Quiet }
 
 foreach ($item in $collection)
   {
