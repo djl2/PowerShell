@@ -3,14 +3,17 @@ replace-allF.ps1
 Includes custom function update-configs
 Recursively finds and replaces strings in all config files for new environments 
 
-Note: This script is set to update the following filenames in the CTIntegrations install folder.
+Notes
 
-*.exe.config
-web.config
-*config.json
+  This script is set to update the following filenames in the CTIntegrations install folder.
 
-Filenames are hardcoded below at $collection = Get-ChildItem -Recurse ('*.exe.config','web.config','*config.json') 
+  *.exe.config
+  web.config
+  *config.json
 
+  Filenames are hardcoded below at $collection = Get-ChildItem -Recurse ('*.exe.config','web.config','*config.json') 
+
+  Be sure to update $oldAESPassword with actual pw before running.
 
 /#>
 
